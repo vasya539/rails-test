@@ -5,7 +5,7 @@ class UserTest < ActiveSupport::TestCase
   #   assert true
   # end
   def setup
-  	@user = User.new(name:         			"Example user", 
+  	@user = User.new(name:         			"Example user",
   					 email:        			"user@example.com",
   					 password:              "foobar",
   					 password_confirmation: "foobar")
@@ -35,7 +35,7 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "email validation should accept valid addresses" do
-  	valid_addresses = %w[user@example.com USER@foo.COM A_US-ER@foo.bar.org 
+  	valid_addresses = %w[user@example.com USER@foo.COM A_US-ER@foo.bar.org
   						 first.last@foo.jp alice+bob@baz.cn]
   	valid_addresses.each do |valid_address|
   		@user.email = valid_address
@@ -61,7 +61,7 @@ class UserTest < ActiveSupport::TestCase
 
   test "email addresses should be saved as lower-case" do
   	mixed_case_email = "Foo@ExAMPLE.CoM"
-  	@user.email = mixed_case_email
+	@user.email = mixed_case_email
   	@user.save
   	assert_equal mixed_case_email.downcase, @user.reload.email
   end
@@ -76,7 +76,7 @@ class UserTest < ActiveSupport::TestCase
     assert_not @user.valid?
   end
 
-  test "authenticated? should return false for a user with nil digest" do
-    assert_not @user.authenticated?('')
+  test "authrnricated? should return false for a user with nil digest" do
+    assert_not @user.authenticated?(:remember, '')
   end
 end
